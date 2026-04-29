@@ -1,0 +1,24 @@
+Sub ExportSheet1ToCSV_UTF8()
+
+    Dim ws As Worksheet
+    Dim filePath As String
+
+    Set ws = ThisWorkbook.Sheets("Clay")
+
+    If ThisWorkbook.Path = "" Then
+        MsgBox "Please save the workbook first!", vbExclamation
+        Exit Sub
+    End If
+
+    filePath = ThisWorkbook.Path & "\Clay_utf8.csv"
+
+    ws.Copy
+
+    With ActiveWorkbook
+        .SaveAs Filename:=filePath, FileFormat:=xlCSV
+        .Close SaveChanges:=False
+    End With
+
+    MsgBox "Clay sheet exported as UTF-8 CSV!", vbInformation
+
+End Sub
